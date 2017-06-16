@@ -586,7 +586,8 @@ ZaTree.prototype._updateHistory =
 function (treeItem, isAddHistory, isShowInHistory) {
     var text = treeItem.getText();
     var dataItem = treeItem.getData("dataItem");
-    var path = this.getABPath(dataItem);
+    // Data taken from treeItem object is not going to be encoded, so always encode it before adding it to path
+    var path = AjxStringUtil.htmlEncode(this.getABPath(dataItem));
     var historyObject = new ZaHistory(path, text, undefined, isShowInHistory);
     ZaZimbraAdmin.getInstance().updateHistory(historyObject, isAddHistory);
 }

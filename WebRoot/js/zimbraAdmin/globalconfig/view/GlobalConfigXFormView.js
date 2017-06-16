@@ -71,6 +71,10 @@ GlobalConfigXFormView.blockedExtSelectionListener = function() {
     var arr = this.widget.getSelection();
     if (arr && arr.length) {
         arr.sort();
+        // HTML Decode data received from view
+        arr = arr.map(function(val) {
+            return AjxStringUtil.htmlDecode(val);
+        });
         this.getModel().setInstanceValue(this.getInstance(), ZaGlobalConfig.A2_blocked_extension_selection, arr);
     } else {
         this.getModel().setInstanceValue(this.getInstance(), ZaGlobalConfig.A2_blocked_extension_selection, null);
@@ -572,6 +576,9 @@ GlobalConfigXFormView.myXFormModifier = function(xFormObject, entry) {
                                             {
                                                 ref : ZaGlobalConfig.A_zimbraMtaBlockedExtension,
                                                 type : _DWT_LIST_,
+                                                getDisplayValue: function(value) {
+                                                    return AjxStringUtil.htmlEncode(value);
+                                                },
                                                 height : "200",
                                                 width : "98%",
                                                 cssClass : "DLTarget",
