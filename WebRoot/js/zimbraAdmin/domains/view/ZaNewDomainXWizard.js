@@ -738,9 +738,7 @@ ZaNewDomainXWizard.myXFormModifier = function(xFormObject, entry) {
 					items: [{type:_ZAWIZ_TOP_GROUPER_, colSpan:"*", label:ZaMsg.TABT_GeneralPage,
                         items:[
                             {ref:ZaDomain.A_domainName, type:_TEXTFIELD_, label:ZaMsg.Domain_DomainName,labelLocation:_LEFT_, required:true, width:200,
-                                getDisplayValue: function(val) {
-                                    return AjxStringUtil.htmlEncode(val);
-                                }
+                                getDisplayValue: AjxUtil.htmlEncode
                             },
                             {ref:ZaDomain.A_zimbraPublicServiceHostname, type:_TEXTFIELD_, label:ZaMsg.Domain_zimbraPublicServiceHostname,labelLocation:_LEFT_, width:200},
                             {ref:ZaDomain.A_zimbraPublicServiceProtocol, type:_OSELECT1_, choices:ZaDomain.protocolChoices, label:ZaMsg.Domain_zimbraPublicServiceProtocol,labelLocation:_LEFT_},
@@ -835,9 +833,7 @@ ZaNewDomainXWizard.myXFormModifier = function(xFormObject, entry) {
                                                 {ref:ZaDomain.A2_new_gal_sync_account_name, width:130, label:null, type:_TEXTFIELD_, visibilityChecks:[],enableDisableChecks:[]},
                                                 {type:_OUTPUT_, value:"@", visibilityChecks:[],enableDisableChecks:[]},
                                                 {type:_OUTPUT_,refPath:ZaDomain.A_domainName,label:null,align:_LEFT_, visibilityChecks:[],enableDisableChecks:[],
-                                                    getDisplayValue: function(val) {
-                                                        return AjxStringUtil.htmlEncode(val);
-                                                    }
+                                                    getDisplayValue: AjxUtil.htmlEncode
                                                 }
                                             ],
                                             enableDisableChangeEventSources:[ZaDomain.A2_create_gal_acc],

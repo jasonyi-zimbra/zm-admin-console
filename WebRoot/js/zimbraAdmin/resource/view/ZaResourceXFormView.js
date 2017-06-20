@@ -174,9 +174,7 @@ function (ev) {
 	if(arr && arr.length) {
 		arr.sort();
 		// When getting data from view make sure to html decode it before storing
-		arr = arr.map(function(val) {
-			return AjxStringUtil.htmlDecode(val);
-		});
+		arr = AjxUtil.htmlDecode(arr);
 
 		this.getModel().setInstanceValue(this.getInstance(), ZaResource.A2_calFwdAddr_selection_cache, arr);	
 	} else {
@@ -489,9 +487,7 @@ ZaResourceXFormView.myXFormModifier = function(xFormObject, entry) {
 	var headerItems = [	{type:_AJX_IMAGE_, ref:ZaResource.A_zimbraCalResType, src:"Resource_32", label:null, rowSpan:3, choices: imgChoices, cssStyle:"margin:auto;"},
 						{type:_OUTPUT_, ref:ZaResource.A_displayname, label:null,cssClass:"AdminTitle", height:"auto", width:350, rowSpan:3, cssStyle:"word-wrap:break-word;overflow:hidden;",
                              visibilityChecks:[ZaItem.hasReadPermission],
-                             getDisplayValue: function(val) {
-                                 return AjxStringUtil.htmlEncode(val);
-                             }
+                             getDisplayValue: AjxUtil.htmlEncode
                          }];
 						
 	/*headerItems.push({type:_OUTPUT_, ref:ZaResource.A_COSId, labelLocation:_LEFT_, label:ZaMsg.NAD_ClassOfService, 
@@ -640,11 +636,7 @@ ZaResourceXFormView.myXFormModifier = function(xFormObject, entry) {
                                     visibilityChecks:[ZaItem.hasReadPermission],
                                     labelCssClass:"gridGroupBodyLabel",
                                     labelCssStyle:"text-align:left;border-right:1px solid;",
-                                    getDisplayValue: function(value) {
-                                        return value.map(function(val) {
-                                            return AjxStringUtil.htmlEncode(val);
-                                        });
-                                    }
+                                    getDisplayValue: AjxUtil.htmlEncode
 								},
 								{type:_GROUP_, numCols:6, width:"625px",colSizes:["275","100px","auto","100px","auto","100px"], colSpan:2,
 									cssStyle:"margin:10px;padding-bottom:0;",
