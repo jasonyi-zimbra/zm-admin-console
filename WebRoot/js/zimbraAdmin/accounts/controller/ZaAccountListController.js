@@ -904,37 +904,41 @@ function () {
 
 ZaAccountListController.getDlMsgFromList =
 function (listArr) {
-		var dlgMsg =  "<br><ul>";
-		var i=0;
-		for(var key in listArr) {
-			if(i > 19) {
-				dlgMsg += "<li>...</li>";
-				break;
-			}
-			dlgMsg += "<li>";
-			var szAccName = listArr[key].attrs[ZaAccount.A_displayname] ? listArr[key].attrs[ZaAccount.A_displayname] : listArr[key].name;
-            if(szAccName.length > 50) {
-                var beginIx = 0;
-                var endIx = 50;
-				do {
-                    if (endIx >= szAccName.length) {
-                        dlgMsg +=  AjxStringUtil.htmlEncode(szAccName.slice(beginIx));
-                    } else {
-                        dlgMsg +=  AjxStringUtil.htmlEncode(szAccName.slice(beginIx, endIx));
-                    }
-					beginIx = endIx;
-					endIx += 50 ;
-                    
-					dlgMsg +=  "<br />";	
-				} while (beginIx < szAccName.length) ;
-			} else {
-				dlgMsg += AjxStringUtil.htmlEncode(szAccName);
-			}
-			dlgMsg += "</li>";
-			i++;
+	var dlgMsg = "<br><ul>";
+	var i=0;
+
+	for(var key in listArr) {
+		if(i > 19) {
+			dlgMsg += "<li>...</li>";
+			break;
 		}
-		dlgMsg += "</ul>";
-		return dlgMsg ;
+
+		dlgMsg += "<li>";
+		var szAccName = listArr[key].attrs[ZaAccount.A_displayname] ? listArr[key].attrs[ZaAccount.A_displayname] : listArr[key].name;
+		if(szAccName.length > 50) {
+			var beginIx = 0;
+			var endIx = 50;
+			do {
+				if (endIx >= szAccName.length) {
+					dlgMsg += AjxStringUtil.htmlEncode(szAccName.slice(beginIx));
+				} else {
+					dlgMsg += AjxStringUtil.htmlEncode(szAccName.slice(beginIx, endIx));
+				}
+				beginIx = endIx;
+				endIx += 50 ;
+
+				dlgMsg +=  "<br />";	
+			} while (beginIx < szAccName.length) ;
+		} else {
+			dlgMsg += AjxStringUtil.htmlEncode(szAccName);
+		}
+
+		dlgMsg += "</li>";
+		i++;
+	}
+
+	dlgMsg += "</ul>";
+	return dlgMsg;
 }
 
 

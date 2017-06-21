@@ -79,7 +79,7 @@ function(msgStr, detailStr, style, title) {
 	msgStr = AjxStringUtil.htmlEncode(msgStr);
 
 	// If we have a <br> tag in string then we need to maintain decode it, so it will be considered as html tag
-	msgStr = msgStr.replace(/&lt;(br\s?(\/)?)&gt;/gi, '<$1>');
+	msgStr = msgStr.replace(/&lt;br\s?(\/)?&gt;/gi, '<br />');
 
 	this._msgStr = msgStr;
 	this._msgStyle = style;
